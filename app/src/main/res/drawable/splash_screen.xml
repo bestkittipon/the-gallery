@@ -5,7 +5,7 @@
     <item android:drawable="@color/colorPrimaryDark" />
 
     <item
-        android:drawable="@drawable/ic_logo"
+        android:drawable="@drawable/ic_exchange_foreground"
         android:bottom="10dp"
         android:gravity="center"
         android:left="10dp"
