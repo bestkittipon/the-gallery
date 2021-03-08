@@ -1,6 +1,7 @@
 package com.kpc.gallery.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.kpc.gallery.viewmodel.BaseViewModel
@@ -24,5 +25,7 @@ internal abstract class DataBindingActivity<Binding : ViewDataBinding, out VM : 
         binding.lifecycleOwner = this
         initialView()
     }
+
+    override fun onClickBack(view: View) {}
 
 }

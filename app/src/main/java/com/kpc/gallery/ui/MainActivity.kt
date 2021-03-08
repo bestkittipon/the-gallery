@@ -13,8 +13,8 @@ import com.kpc.gallery.R
 import com.kpc.gallery.base.DataBindingActivity
 import com.kpc.gallery.databinding.ActivityMainBinding
 import com.kpc.gallery.dialog.MessageDialog
+import com.kpc.gallery.mappers.toPresentation
 import com.kpc.gallery.viewmodel.MainViewModel
-
 
 internal class MainActivity : DataBindingActivity<ActivityMainBinding, MainViewModel>(MainViewModel::class) {
 
@@ -34,10 +34,6 @@ internal class MainActivity : DataBindingActivity<ActivityMainBinding, MainViewM
     override fun initialView() {
         binding.viewModel = viewModel
         viewModel.getPhoto()
-
-        binding.etSearchCurrency.addTextChangedListener {
-            //viewModel.onSearchCurrency(it.toString())
-        }
 
         val gridLayoutManager = GridLayoutManager(this, 2)
         binding.rvList.layoutManager = gridLayoutManager
@@ -62,13 +58,9 @@ internal class MainActivity : DataBindingActivity<ActivityMainBinding, MainViewM
             }
         }
 
-        /*viewModel.selectedCurrency.observe(this, Observer { currency ->
-            currency.toPresentation().let {currencyInfo ->
-                viewModel.currencyResult.value?.toPresentation()?.let { currencyPresentation ->
-                    startActivity(ConvertCurrencyActivity.newIntent(this, currencyPresentation, currencyInfo))
-                }
-            }
-        })*/
+        viewModel.selectedPhoto.observe(this, Observer { photo ->
+            startActivity(PhotoActivity.newIntent(this, photo.toPresentation()))
+        })
 
         viewModel.error.observe(this, Observer {
             if (it.isNotEmpty()) {

@@ -22,6 +22,10 @@ class MainViewModel(
         get() = _photoResult
     private val _photoResult = MutableLiveData<Photos>()
 
+    val selectedPhoto: LiveData<PhotoItemDomain>
+        get() = _selectedPhoto
+    private val _selectedPhoto = MutableLiveData<PhotoItemDomain>()
+
     val loadMore: LiveData<Boolean>
         get() = _loadMore
     private val _loadMore = MutableLiveData<Boolean>().apply {
@@ -56,6 +60,10 @@ class MainViewModel(
                 onLoadMoreComplete(results)
             }
         }
+    }
+
+    fun onSelectPhoto(photo: PhotoItemDomain) {
+        _selectedPhoto.postValue(photo)
     }
 
     private fun onResultComplete(photos: Photos) {

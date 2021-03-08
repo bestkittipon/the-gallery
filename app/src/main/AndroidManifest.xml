@@ -30,6 +30,9 @@
 
         <activity android:name="com.kpc.gallery.ui.MainActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name="com.kpc.gallery.ui.PhotoActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

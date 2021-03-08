@@ -18,7 +18,6 @@ import com.kpc.gallery.databinding.ItemContentBinding
 import com.kpc.gallery.databinding.ItemLoadmoreBinding
 import com.kpc.gallery.viewmodel.MainViewModel
 
-
 class CurrencyAdapter(layoutId: Int, viewModel: MainViewModel): BaseAdapter<MainViewModel, ViewDataBinding, PhotoItemDomain, PhotoViewHolder>(layoutId, viewModel) {
 
     private val TYPE_ITEM = 0
@@ -74,7 +73,7 @@ class PhotoViewHolder(private val viewBinding: ViewDataBinding, private val load
                 data.thumbnailUrl, LazyHeaders.Builder()
                     .addHeader(
                         "User-Agent",
-                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit / 537.36(KHTML, like Gecko) Chrome  47.0.2526.106 Safari / 537.36"
+                        "Android"
                     )
                     .build()
             )

@@ -8,12 +8,14 @@ import androidx.lifecycle.Observer
 import com.kpc.gallery.commons.NetworkUtils
 import com.kpc.gallery.commons.versionFrom
 
-internal open class BaseActivity : AppCompatActivity() {
+internal abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         whiteStatusBar()
     }
+
+    abstract fun onClickBack(view: View)
 
     private fun whiteStatusBar() {
         if (versionFrom(Build.VERSION_CODES.M)) {
