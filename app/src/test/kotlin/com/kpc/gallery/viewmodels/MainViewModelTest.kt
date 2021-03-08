@@ -32,15 +32,30 @@ internal class MainViewModelTest: BaseViewModelTest() {
                 Truth.assertThat(photo.photos[0].thumbnailUrl?.isNotEmpty()).isTrue()
                 Truth.assertThat(photo.photos[0].title?.isNotEmpty()).isTrue()
                 Truth.assertThat(photo.photos[0].url?.isNotEmpty()).isTrue()
+                Truth.assertThat(mainViewModel.adapter.itemCount > 0).isTrue()
+                Truth.assertThat(mainViewModel.adapter.getData()[0].thumbnailUrl?.isNotEmpty()).isTrue()
+                Truth.assertThat(mainViewModel.adapter.getData()[0].title?.isNotEmpty()).isTrue()
+                Truth.assertThat(mainViewModel.adapter.getData()[0].url?.isNotEmpty()).isTrue()
+            }
+        }
+    }
 
-                val adapter = CurrencyAdapter(R.layout.item_content, mainViewModel)
-                adapter.setData(photo.photos)
-                adapter.getItemId(0)
+    @Test
+    fun given_a_photo_list_more_then_get_result() {
+        coroutineTestRule.dispatcher.runBlockingTest {
+            prepareViewModel(UiState.SUCCESS)
+            mainViewModel.loadMorePhoto()
 
-                Truth.assertThat(adapter.itemCount > 0).isTrue()
-                Truth.assertThat(adapter.getData()[0].thumbnailUrl?.isNotEmpty()).isTrue()
-                Truth.assertThat(adapter.getData()[0].title?.isNotEmpty()).isTrue()
-                Truth.assertThat(adapter.getData()[0].url?.isNotEmpty()).isTrue()
+            mainViewModel.photoResult.observeOnce { photo ->
+                Truth.assertThat(photo.photos.isNotEmpty()).isTrue()
+                Truth.assertThat(photo.photos[0].thumbnailUrl?.isNotEmpty()).isTrue()
+                Truth.assertThat(photo.photos[0].title?.isNotEmpty()).isTrue()
+                Truth.assertThat(photo.photos[0].url?.isNotEmpty()).isTrue()
+                Truth.assertThat(mainViewModel.adapter.itemCount > 0).isTrue()
+                Truth.assertThat(mainViewModel.adapter.getData()[0].thumbnailUrl?.isNotEmpty()).isTrue()
+                Truth.assertThat(mainViewModel.adapter.getData()[0].title?.isNotEmpty()).isTrue()
+                Truth.assertThat(mainViewModel.adapter.getData()[0].url?.isNotEmpty()).isTrue()
+                Truth.assertThat(mainViewModel.adapter.isPositionFooter(0)).isTrue()
             }
         }
     }
